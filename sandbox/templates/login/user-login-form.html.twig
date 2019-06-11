@@ -8,6 +8,9 @@
 	<div class="form-column">
 		<a href="{{ base_url }}/user/password" class="reg-terms-anch">Forgot your password?</a>
 	</div>
+        {% if form.antibot_key %}
+          {{ form.antibot_key }}
+        {% endif %}
 	{{ form.form_build_id }}
 	{{ form.form_id }}
 	<div class="form-column">
