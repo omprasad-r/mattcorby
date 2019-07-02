@@ -3,6 +3,6 @@ type: theme
 description: This is the Angular Based theme in Drupal Lightning
 package: Custom
 version: '7.1'
-version: '6.6'
+version: '6.8'
 core: '8.x'
 project: 'drupal'
