@@ -2,6 +2,6 @@ name: Ilyos
 type: theme
 description: This is the Angular Based theme in Drupal Lightning
 package: Custom
-version: '5.7'
+version: '5.8'
 core: '8.x'
 project: 'drupal'
