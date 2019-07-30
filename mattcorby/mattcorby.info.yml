@@ -2,7 +2,7 @@ name: TheRhythm
 type: theme
 description: This is the Angular Based theme in Drupal Lightning
 package: Custom
-version: '7.1'
-version: '8.10'
+version: '7.2'
+version: '8.2'
 core: '8.x'
 project: 'drupal'
