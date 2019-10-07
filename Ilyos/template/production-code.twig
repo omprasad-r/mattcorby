@@ -1,10 +1,10 @@
 {% spaceless %}
 {% if code == "css" %}
-<link href="/{{ base_path ~ directory }}/staging/styles.2b8b02201e51d3b5325c.bundle.css" rel="stylesheet" />
+<link href="/{{ base_path ~ directory }}/styles.2b8b02201e51d3b5325c.bundle.css" rel="stylesheet" />
 {% else %}
-<script type="text/javascript" src="/{{ base_path ~ directory }}/staging/inline.ff8768b9615f17a10241.bundle.js"></script>
-<script type="text/javascript" src="/{{ base_path ~ directory }}/staging/polyfills.74b8031842ed2aad8d35.bundle.js"></script>
-<script type="text/javascript" src="/{{ base_path ~ directory }}/staging/vendor.71f7eab3ff61e73f7455.bundle.js"></script>
-<script type="text/javascript" src="/{{ base_path ~ directory }}/staging/main.78885e7b5d1feb434c2b.bundle.js"></script>
+    <script type="text/javascript" src="/{{ base_path ~ directory }}/inline.ff8768b9615f17a10241.bundle.js"></script>
+	<script type="text/javascript" src="/{{ base_path ~ directory }}/polyfills.74b8031842ed2aad8d35.bundle.js"></script>	
+	<script type="text/javascript" src="/{{ base_path ~ directory }}/vendor.71f7eab3ff61e73f7455.bundle.js"></script>
+    <script type="text/javascript" src="/{{ base_path ~ directory }}/main.78885e7b5d1feb434c2b.bundle.js"></script>
 {% endif %}
 {% endspaceless %}
