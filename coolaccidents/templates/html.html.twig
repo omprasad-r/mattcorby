@@ -42,7 +42,27 @@
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token|raw }}">
-    <script>digitalData={}</script>
+    	 <script>digitalData = {
+            settings: {
+                reportSuites: "wmg,wmgau,wmgcoolaccidents.com"
+            },
+            content: {
+                artist: "Cool Accidents",
+                label: "Warner Music International",
+                sublabel: "Warner Music Australia"
+            },
+            page: {
+                pageInfo: {
+                    pageName: "Cool Accidents:Homepage",
+                    server: "Cool Accidents:Site",
+                    platform: "Drupal 8"
+                },
+                category: {
+                    primaryCategory: "Cool Accidents:Home",
+                    pageType: "homepage"
+                }
+            }
+        }</script>
     <script src="//assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js"></script>
     <js-placeholder token="{{ placeholder_token|raw }}">	
 	
