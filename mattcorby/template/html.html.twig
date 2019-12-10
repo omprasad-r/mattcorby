@@ -37,9 +37,251 @@
     <base href="/">
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
+      <script>
+
+var reportSuitesStr = "wmg,wmgau,wmgmaniacsau";
+      
+        digitalData = {
+    settings: {
+        reportSuites: reportSuitesStr
+    },
+    content: {
+        artist: "Maniacs",
+        label: "Warner Music International",
+        sublabel: "Warner Music Australia"
+    },
+    page: {
+        pageInfo: {
+            pageName: "",
+            server: "",
+            platform: "Drupal 8"
+        },
+        category: {
+            primaryCategory: "",
+            pageType: ""
+        }
+    }
+}
+
+function getOmniturePageConfig2(path) {
+
+      var regexPattern = {
+        blog: /\/news/,
+        blogDetail: /\/news\//,
+        blogCategory: /\/tag\//,
+        video: /\/video/,
+        videoDetail: /\/video\//,
+        tour: /\/tour/,
+        tourDetail: /\/tour\//,
+        mailinglist: /\/mailing-list/,
+        store: /\/merch/,
+        about: /\/about/,
+        contact: /\/contact-us/,
+        search: /\/search/,
+        pageNotFound: /\/404/,
+        home: /\//
+      };
+
+      var pageConfig = {
+        artistName: 'Maniacs',
+        platform: 'Drupal 8',
+        reportSuites : 'wmg,wmgau,wmgmaniacsau',
+        label: 'Warner Music International',
+        sublabel: 'Warner Music Australia',
+        server: 'Maniacs:Site'
+      };
+
+      var pathPattern, title = "";
+    
+      switch (true) {
+        case regexPattern.blogDetail.test(path): pathPattern = '/blogDetail'; title = path.split('/').pop(); break;
+        case regexPattern.blogCategory.test(path): pathPattern = '/blogCategory'; title = path.split('/').pop(); break;
+        case regexPattern.blog.test(path): pathPattern = '/blog'; break;
+        case regexPattern.videoDetail.test(path): pathPattern = '/videoDetail'; title = path.split('/').pop(); break;
+        case regexPattern.video.test(path): pathPattern = '/video'; break;
+        case regexPattern.tourDetail.test(path): pathPattern = '/tourDetail'; title = path.split('/').pop(); break;
+        case regexPattern.tour.test(path): pathPattern = '/tour'; break;
+        case regexPattern.mailinglist.test(path): pathPattern = '/mailing-list'; break;
+        case regexPattern.store.test(path): pathPattern = '/store'; break;
+        case regexPattern.about.test(path): pathPattern = '/about'; break;
+        case regexPattern.contact.test(path): pathPattern = '/contact'; break;
+        case regexPattern.search.test(path): pathPattern = '/search'; break;
+        case regexPattern.pageNotFound.test(path): pathPattern = "/404"; break;
+        case regexPattern.home.test(path): pathPattern = '/'; break;
+      }
+
+      title = decodeURIComponent(title);
+      let customOmniTitle = title ? title.charAt(0).toUpperCase() + title.substr(1).toLowerCase() : '';
+      customOmniTitle = customOmniTitle.split('-').join(' ');
+      console.log("customOmniTitle is : " + customOmniTitle);
+
+      var page = {
+        '/': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Homepage',
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Home',
+                pageType: 'homepage'
+            }
+        },
+        '/video': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Videos',
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Videos',
+                pageType: 'videos:landing'
+            }
+        },
+        '/videoDetail': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Videos:' + customOmniTitle,
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Videos',
+                pageType: 'videos:details'
+            }
+        },
+        '/tour': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Tour',
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Tour',
+                pageType: 'Tour:Upcoming'
+            }
+        },
+        '/tourDetail': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Tour:' + customOmniTitle,
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Tour',
+                pageType: 'tour:details'
+            }
+        },
+        '/blog': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':News',
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':News',
+                pageType: 'news:landing'
+            }
+        },
+        '/blogDetail': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':News:' + customOmniTitle
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':News',
+                pageType: 'news:article'
+            }
+        },
+        '/blogCategory': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':News:' + customOmniTitle
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':News',
+                pageType: 'news:category'
+            }
+        },
+        '/store': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Store'
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Store',
+                pageType: 'store:landing'
+            }
+        },
+        '/about': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':About'
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':About',
+                pageType: 'about'
+            }
+        },
+        '/contact': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Contact Us'
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Contact Us',
+                pageType: 'contact us'
+            }
+        },
+        '/mailing-list': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Mailing List Sign-up'
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Mailing List Sign-up',
+                pageType: 'mailing list sign-up'
+            }
+        },
+        '/search': {
+            pageInfo: {
+                pageName: pageConfig.artistName + ':Search:Results',
+                // onsiteSearchTerms: '',
+                // onsiteSearchResults: ''
+            },
+            category: {
+                primaryCategory: pageConfig.artistName + ':Search',
+                pageType: 'search:results'
+            }
+        },
+        //"/**": {
+        "/404": {
+                pageInfo: {
+                    pageName: pageConfig.artistName + ":404 Error",
+
+                },
+                category: {
+                    primaryCategory: pageConfig.artistName + ":Error",
+                    pageType: "Error"
+                }
+            }
+      }
+
+      var data = page[pathPattern];
+      data.pageConfig = pageConfig;
+      return data;
+    }
+        
+        var pathname = window.location.pathname;
+        var result = getOmniturePageConfig2(pathname);
+    digitalData = {
+        settings: {
+            reportSuites: result.pageConfig.reportSuites || ""
+        },
+        page: {
+            pageInfo: {
+                pageName: result.pageInfo.pageName || "",
+                server: result.pageConfig.server || "",
+                platform: result.pageConfig.platform || ""
+            },
+            category: {
+                primaryCategory: result.category.primaryCategory || "",
+                pageType: result.category.pageType || ""
+            }
+        },
+        content: {
+            artist: result.pageConfig.artistName || "",
+            label: result.pageConfig.label || "",
+            sublabel: result.pageConfig.sublabel || ""
+        }
+    };
+
+    </script>  
+        
     <css-placeholder token="{{ placeholder_token|raw }}">
-        <script>digitalData={}</script>
-        <script src="//assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js"></script>
+       
+        
     <js-placeholder token="{{ placeholder_token|raw }}">
 	
 	<!-- Hammer JS -->
@@ -49,27 +291,6 @@
 	<link href="/{{ base_path ~ directory }}/css/global-style.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gridlex/2.0.8/gridlex.min.css">
 <link href="/{{ base_path ~ directory }}/styles.fb940325ef48245c9820.bundle.css" rel="stylesheet" />
-	 <script>digitalData = {
-    settings: {
-        reportSuites: "wmg,wmgau,wmgmaniacsau"
-    },
-    content: {
-        artist: "Maniacs",
-        label: "Warner Music International",
-        sublabel: "Warner Music Australia"
-    },
-    page: {
-        pageInfo: {
-            pageName: "Maniacs:Homepage",
-            server: "Maniacs:Site",
-            platform: "Drupal 8"
-        },
-        category: {
-            primaryCategory: "Maniacs:Home",
-            pageType: "homepage"
-        }
-    }
-}</script>
   <!--<script src="http://assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js"></script>-->
   <script type="text/javascript" src="https://libraries.wmgartistservices.com/pplightbox/lightbox.js"></script>
 <link rel="stylesheet" type="text/css" href="https://libraries.wmgartistservices.com/pplightbox/lightbox-light.css"/>
@@ -84,6 +305,7 @@
     var googletag = googletag || {};
     googletag.cmd = googletag.cmd || [];
   </script>
+        <script src="//assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js"></script>
   </head>
   <body{{ attributes.addClass(body_classes) }}>
     
