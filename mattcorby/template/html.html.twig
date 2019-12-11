@@ -79,6 +79,7 @@ function getOmniturePageConfig2(path) {
         contact: /\/contact-us/,
         search: /\/search/,
         pageNotFound: /\/404/,
+        pageNotFound2: /\/.+/,
         home: /\//
       };
 
@@ -107,6 +108,7 @@ function getOmniturePageConfig2(path) {
         case regexPattern.contact.test(path): pathPattern = '/contact'; break;
         case regexPattern.search.test(path): pathPattern = '/search'; break;
         case regexPattern.pageNotFound.test(path): pathPattern = "/404"; break;
+        case regexPattern.pageNotFound2.test(path): pathPattern = "/404"; break;
         case regexPattern.home.test(path): pathPattern = '/'; break;
       }
 
