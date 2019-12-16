@@ -1,0 +1,518 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain one or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - db_offline: A flag indicating if the database is offline.
+ * - placeholder_token: The token for generating head, css, js and js-bottom
+ *   placeholders.
+ *
+ * @see template_preprocess_html()
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+{#    <script type="text/javascript" src="https://cdn.livefyre.com/Livefyre.js" ></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script type="text/javascript" src="https://libraries.wmgartistservices.com/songkick/widget_min.js" ></script>
+    <script type="text/javascript" src="https://assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js" ></script>
+    <script type="text/javascript" src="https://libraries.wmgartistservices.com/mailing-list.js" charset="utf-8"></script>#}
+  </head>
+  <body{{ attributes }}>
+ <div data-smooth="">
+
+            <header class="header container container--fluid">
+    <div class="cell-24">
+        <nav class="navigation">
+    <button class="navigation__toggle">
+        <svg class="navigation__logo" width="505px" height="125px" viewBox="0 0 505 125">
+            <title>Warner Recors Logo with Burger Menu</title>
+            <g class="wr-logo-burger" stroke="none" stroke-width="1" fill-rule="evenodd">
+                <path d="M199.245612,124.986284 L234.575961,124.986284 L234.575961,113.547499 L216.266172,113.547499 L216.266172,107.018887 L234.630821,107.018887 L234.630821,91.3419899 L216.266172,91.3419899 L216.266172,85.2111298 L234.630821,85.2111298 L234.630821,69.5479483 L199.300473,69.5479483 L199.245612,124.986284 Z M296.77438,113.300618 L281.015619,104.81068 C279.262479,109.908712 274.403836,113.279314 269.014821,113.136031 C261.018861,113.136031 256.204827,106.840585 256.204827,99.3381675 C256.204827,91.8357504 261.265734,85.5403035 269.014821,85.5403035 C274.056938,85.3855804 278.708681,88.2424645 280.851036,92.8095559 L295.786886,83.3320967 C290.002735,74.1049758 279.821357,68.5669459 268.93253,68.7250141 C251.102773,68.7250141 238.484792,82.4405846 238.484792,99.3381675 C238.484792,110.10489 243.353687,119.527487 251.59652,124.972569 L286.501697,124.972569 C290.915145,122.057063 294.478314,118.02532 296.829241,113.286903 L296.77438,113.300618 Z M404.452394,46.9995503 L386.060315,46.9995503 L386.060315,40.4572232 L404.452394,40.4572232 L404.452394,24.7940416 L386.060315,24.7940416 L386.060315,18.6768971 L404.452394,18.6768971 L404.452394,3 L369.0809,3 L369.0809,62.594154 L404.452394,62.594154 L404.452394,46.9995503 Z M477.568111,105.976504 C482.793601,107.44407 487.292186,108.170995 487.292186,110.708375 C487.292186,112.505115 485.001748,114.301855 482.066696,114.301855 C478.555605,114.301855 474.797641,112.011355 472.109462,107.69095 L457.653644,119.11602 C459.566813,121.320796 461.730081,123.295407 464.099787,125 L497.839173,125 C502.432359,121.302402 505.071986,115.699363 504.998506,109.803148 C504.998506,97.5688589 495.123563,93.9753794 487.168749,91.6848791 C481.778677,90.1350197 477.293807,89.2435076 477.293807,86.6238336 C477.293807,84.8270939 479.159074,83.2772344 481.943259,83.2772344 C485.372058,83.2772344 488.800858,85.814615 490.762131,89.3120854 L504.216739,78.8745363 C499.978743,73.6489039 493.244581,68.5878583 481.860968,68.5878583 C468.886391,68.5878583 460.232102,76.8172007 460.232102,88.0091062 C460.245817,100.325689 469.791594,103.836875 477.540681,105.962788 L477.568111,105.976504 Z M357.189824,99.3518831 C357.258158,109.672719 352.096011,119.326198 343.474627,125 L309.817533,125 C297.540785,117.005083 292.649376,101.432386 298.149713,87.8533546 C303.650049,74.2743235 318.00005,66.4959957 332.379772,69.2991651 C346.759495,72.1023345 357.13742,84.7011006 357.134964,99.3518831 L357.189824,99.3518831 Z M339.798954,99.3518831 C339.798954,91.849466 334.408882,85.5677347 326.659795,85.5677347 C318.910709,85.5677347 313.602927,91.849466 313.602927,99.3518831 C313.602927,106.8543 318.636405,113.149747 326.632365,113.149747 C334.628325,113.149747 339.771524,106.8543 339.771524,99.3381675 L339.798954,99.3518831 Z M328.826796,32.6530635 L347.83606,62.6078696 L364.006277,62.6078696 L364.006277,3.01371557 L346.958287,3.01371557 L346.958287,30.8563238 L329.251967,3.01371557 L311.778806,3.01371557 L311.778806,62.594154 L328.75822,62.594154 L328.826796,32.6530635 Z M204.087077,62.6078696 L223.836961,3.02743114 L239.828881,3.02743114 L259.510189,62.6078696 L242.379908,62.6078696 L240.171761,55.5443508 L223.192347,55.5443508 L220.997915,62.6353007 L204.087077,62.6078696 Z M226.634861,42.9123103 L236.880114,42.9123103 L231.860351,25.7541315 L226.634861,42.9123103 Z M168.290412,62.6078696 L174.7777,32.1455874 L181.360995,62.6078696 L198.258118,62.6078696 L217.459394,3.02743114 L200.438834,3.02743114 L191.441665,34.1343451 L183.212547,3.02743114 L166.452576,3.02743114 L158.223457,33.8051714 L148.979414,3.02743114 L132,3.02743114 L151.201276,62.6078696 L168.290412,62.6078696 Z M279.095491,62.6078696 L261.96521,62.6078696 L261.96521,3.01371557 L283.594076,3.01371557 C298.529926,3.01371557 306.539601,12.7243395 306.539601,24.0808319 C306.539601,31.8301293 303.275384,38.770208 296.582367,42.5145587 L307.924836,62.594154 L288.723559,62.594154 L279.0132,43.0083193 L279.095491,62.6078696 Z M279.095491,30.8974705 L283.484354,30.8974705 C287.022875,30.8974705 290.341953,28.7715571 290.341953,24.4511523 C290.341953,20.1307476 287.077736,18.0871276 283.484354,18.0871276 L279.095491,18.0871276 L279.095491,30.8974705 Z M426.0264,62.6078696 L408.896118,62.6078696 L408.896118,3.01371557 L430.511269,3.01371557 C445.447119,3.01371557 453.456794,12.7243395 453.456794,24.0808319 C453.456794,31.8301293 450.192577,38.770208 443.499561,42.5145587 L454.842029,62.594154 L435.640753,62.594154 L425.930393,43.0083193 L426.0264,62.6078696 Z M426.0264,30.8974705 L430.415263,30.8974705 C433.953784,30.8974705 437.272861,28.7715571 437.272861,24.4511523 C437.272861,20.1307476 434.008644,18.0871276 430.415263,18.0871276 L426.0264,18.0871276 L426.0264,30.8974705 Z M408.964694,125 L408.964694,69.5479483 L428.399129,69.5479483 C445.364828,69.5479483 458.915443,82.4543002 458.915443,99.3381675 C459.038612,109.92039 453.41603,119.737863 444.226466,124.986284 L408.964694,125 Z M425.875532,113.149747 L429.400338,113.149747 C437.396298,113.149747 442.539497,106.868016 442.539497,99.3518831 C442.539497,91.8357504 437.149425,85.5677347 429.400338,85.5677347 L425.875532,85.5677347 L425.875532,113.149747 Z M360.810636,124.986284 L360.810636,69.5479483 L382.508079,69.5479483 C397.443928,69.5479483 405.439888,79.2722878 405.439888,90.6150646 C405.439888,98.364362 402.175671,105.304441 395.482655,109.062507 L404.479825,124.972569 L385.525422,124.972569 L377.872342,109.542552 L377.872342,124.972569 L360.810636,124.986284 Z M377.872342,97.4317032 L382.261205,97.4317032 C385.786011,97.4317032 389.118804,95.3057898 389.118804,90.985385 C389.118804,86.6649803 385.840871,84.6213603 382.261205,84.6213603 L377.872342,84.6213603 L377.872342,97.4317032 Z M151.201276,124.972569 L151.201276,69.5479483 L172.830142,69.5479483 C187.765992,69.5479483 195.775667,79.2722878 195.775667,90.6150646 C195.775667,98.364362 192.51145,105.304441 185.818434,109.062507 L194.801888,124.972569 L175.916062,124.972569 L168.262982,109.542552 L168.262982,124.972569 L151.201276,124.972569 Z M168.262982,97.4179876 L172.66556,97.4179876 C176.204081,97.4179876 179.523159,95.2920742 179.523159,90.9716695 C179.523159,86.6512648 176.258942,84.6076447 172.66556,84.6076447 L168.276697,84.6076447 L168.262982,97.4179876 Z" class="text" fill-rule="nonzero"></path>
+                <path d="M42.1537065,124.958909 L25.3867111,124.958909 C9.27624575,111.504971 -0.0203628668,91.6250354 0,70.6772963 C-0.231058958,31.4487983 31.1314685,0.192013181 70.9049806,0 C100.790939,-0.0560012506 127.508632,18.5563745 137.723204,46.5479062 C147.937777,74.5394381 139.459322,105.909008 116.519454,125 L42.1537065,124.958909 Z" class="sun" fill-rule="nonzero"></path>
+                <path d="M102,86.125 L102,92 L40,92 L40,86.125 L102,86.125 Z M102,65.5625 L102,71.4375 L40,71.4375 L40,65.5625 L102,65.5625 Z M102,45 L102,50.875 L40,50.875 L40,45 L102,45 Z" class="burger" fill="#000000"></path>
+            </g>
+        </svg>
+    </button>
+</nav>
+    </div>
+</header>
+
+            <main data-router-wrapper="" role="main" itemscope="" itemprop="mainContentOfPage">
+
+                <div data-router-view="home">
+                    <section class="section landing" data-section-id="landing" data-smooth-item="">
+
+    <div class="full-screen-video" data-gl-id="landing" data-gl-component="Landing">
+        <video class="landing-video" src="/videos/warner-landing.mp4" playsinline="" muted="" loop=""></video>
+    </div>
+
+    <button class="landing__mute-toggle">Sound: <span>off</span></button>
+
+</section>
+                    <section class="section section--v-centered directory" data-section-id="directory" data-smooth-item="">
+
+    <nav class="directory__nav">
+        <ul class="directory__nav__list">
+            <li class="directory__nav__list__item">
+                <a class="directory__nav__list__item__link" href="">
+                    Artists
+                </a>
+            </li>
+            <li class="directory__nav__list__item">
+                <a class="directory__nav__list__item__link" href="">
+                    News
+                </a>
+            </li>
+            <li class="directory__nav__list__item">
+                <a class="directory__nav__list__item__link" href="">
+                    Careers
+                </a>
+            </li>
+            <li class="directory__nav__list__item">
+                <a class="directory__nav__list__item__link" href="">
+                    Culture
+                </a>
+            </li>
+            <li class="directory__nav__list__item">
+                <a class="directory__nav__list__item__link" href="">
+                    Store
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</section>
+                    <section class="section artists" data-section-id="artists" data-smooth-item="">
+
+    <div class="container">
+        <div class="grid">
+            <div class="cell-24 title-container">
+                <h2 class="title">
+                    <span class="title__we-are">
+                        <span class="title__we-are__inner">We Are</span>
+                    </span>
+                    <span class="title__text">
+                        <span class="title__text__inner">
+                            <span class="artists__title">
+                                Warner Records
+                                <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                            </span>
+                            <span class="artists__selected-artist artists__selected-artist--a" aria-hidden="true">
+                                <span class="artists__selected-artist__inner">
+                                    <span class="artists__selected-artist__inner__name">Red Hot Chilli Peppers</span>
+                                    <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                                </span>
+                            </span>
+                            <span class="artists__selected-artist artists__selected-artist--b" aria-hidden="true">
+                                <span class="artists__selected-artist__inner">
+                                    <span class="artists__selected-artist__inner__name">Red Hot Chilli Peppers</span>
+                                    <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container u-h-100">
+        <div class="grid u-h-100">
+            <div class="cell-24 cell-10-md cell-6-xlg">
+                <div class="plane" data-gl-id="artistsImage" data-gl-component="Artists">
+                    <video class="artists-video" src="/videos/artists-cover.mp4" playsinline="" muted="" loop=""></video>
+                </div>
+            </div>
+            <div class="cell-24 cell-14-md cell-18-xlg u-h-100">
+                <div class="artists__list u-h-100">
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="#">#</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">88 Keys</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="A">A</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Adam Sandler</li>
+            <li class="artists__letter__list__item">Ali Gatie</li>
+            <li class="artists__letter__list__item">Anne-marie</li>
+            <li class="artists__letter__list__item">Andra Day</li>
+            <li class="artists__letter__list__item">Ar’mon & Trey</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="B">B</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Baka Not Nice</li>
+            <li class="artists__letter__list__item">Banx & Ranx</li>
+            <li class="artists__letter__list__item">Beautiful Boy</li>
+            <li class="artists__letter__list__item">Soundtrack</li>
+            <li class="artists__letter__list__item">Bebe Rexha</li>
+            <li class="artists__letter__list__item">Beetlejuice</li>
+            <li class="artists__letter__list__item">Biffy Clyro</li>
+            <li class="artists__letter__list__item">Brandy Clark</li>
+            <li class="artists__letter__list__item">Brother Sundance</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="C">C</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Carlie Hanson</li>
+            <li class="artists__letter__list__item">Carlos Vara</li>
+            <li class="artists__letter__list__item">Cher</li>
+            <li class="artists__letter__list__item">Crystal Fighters</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="D">D</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">David Guetta</li>
+            <li class="artists__letter__list__item">Deftones</li>
+            <li class="artists__letter__list__item">Diana Gordon</li>
+            <li class="artists__letter__list__item">Dijon</li>
+            <li class="artists__letter__list__item">Disturbed</li>
+            <li class="artists__letter__list__item">Dua Lipa</li>
+            <li class="artists__letter__list__item">Dvsn</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="E">E</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Emily Weisband</li>
+            <li class="artists__letter__list__item">Ethan Gruska</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="F">F</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Flaming Lips</li>
+            <li class="artists__letter__list__item">Foals</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="G">G</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Gallant</li>
+            <li class="artists__letter__list__item">Gary Clark Jr.</li>
+            <li class="artists__letter__list__item">Gerard Way</li>
+            <li class="artists__letter__list__item">Goo Goo Dolls</li>
+            <li class="artists__letter__list__item">Gorillaz</li>
+            <li class="artists__letter__list__item">Green Day</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="H">H</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Hanne Mjøen</li>
+            <li class="artists__letter__list__item">Hobo Johnson</li>
+            <li class="artists__letter__list__item">Hopium</li>
+            <li class="artists__letter__list__item">Houndmouth</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="I">I</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Idina Menzel</li>
+            <li class="artists__letter__list__item">Ilovemakonnen</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="J">J</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Jason Derulo</li>
+            <li class="artists__letter__list__item">Jc Stewart</li>
+            <li class="artists__letter__list__item">Jenny Lewis</li>
+            <li class="artists__letter__list__item">Jojo</li>
+            <li class="artists__letter__list__item">Josh Groban</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="K">K</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Khushi</li>
+            <li class="artists__letter__list__item">Kris Kross</li>
+            <li class="artists__letter__list__item">Amsterdam</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="L">L</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">L Devine</li>
+            <li class="artists__letter__list__item">Lewis Blissett</li>
+            <li class="artists__letter__list__item">Liam Gallagher</li>
+            <li class="artists__letter__list__item">Lilbootycall</li>
+            <li class="artists__letter__list__item">Lil Pump</li>
+            <li class="artists__letter__list__item">Lily Allen</li>
+            <li class="artists__letter__list__item">Lil Zay Osama</li>
+            <li class="artists__letter__list__item">Linkin Park</li>
+            <li class="artists__letter__list__item">Lukas Graham</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="M">M</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Mac Miller</li>
+            <li class="artists__letter__list__item">Majid Jordan</li>
+            <li class="artists__letter__list__item">Mastodon</li>
+            <li class="artists__letter__list__item">Michael Bublé</li>
+            <li class="artists__letter__list__item">Mike Shinoda</li>
+            <li class="artists__letter__list__item">Muse</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="N">N</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Neil Young</li>
+            <li class="artists__letter__list__item">Nonono</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="P">P</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Partynextdoor</li>
+            <li class="artists__letter__list__item">Patrick Droney</li>
+            <li class="artists__letter__list__item">Paul Weller</li>
+            <li class="artists__letter__list__item">Posa</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="Q">Q</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Q Money</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="R">R</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Rationale</li>
+            <li class="artists__letter__list__item">Red Hot Chili Peppers</li>
+            <li class="artists__letter__list__item">Regina Spektor</li>
+            <li class="artists__letter__list__item">Rita Ora</li>
+            <li class="artists__letter__list__item">Robnhood Tra</li>
+            <li class="artists__letter__list__item">Roy Woods</li>
+            <li class="artists__letter__list__item">Royal Blood</li>
+            <li class="artists__letter__list__item">Rüfüs Du Sol</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="S">S</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Sabina Ddumba</li>
+            <li class="artists__letter__list__item">Saweetie</li>
+            <li class="artists__letter__list__item">Scott Helman</li>
+            <li class="artists__letter__list__item">Shordie Shordie</li>
+            <li class="artists__letter__list__item">Sofía Reyes</li>
+            <li class="artists__letter__list__item">Stereophonics</li>
+
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="T">T</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Tegan And Sara</li>
+            <li class="artists__letter__list__item">The Head And</li>
+            <li class="artists__letter__list__item">The Heart</li>
+            <li class="artists__letter__list__item">The Regrettes</li>
+            <li class="artists__letter__list__item">The Shelters</li>
+            <li class="artists__letter__list__item">They.</li>
+            <li class="artists__letter__list__item">Tom Petty</li>
+        </ul>
+    </div>
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="W">W</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">Wale</li>
+        </ul>
+    </div>
+
+
+    <div class="artists__letter">
+        <div class="artists__letter__text" data-letter="Y">Y</div>
+        <ul class="artists__letter__list">
+            <li class="artists__letter__list__item">YN Billy</li>
+            <li class="artists__letter__list__item">YFN Lucci</li>
+        </ul>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+</section>
+                    <section class="section waves" data-section-id="waves" data-smooth-item="">
+
+    <div class="full-screen-video" data-gl-id="waves" data-gl-component="Waves">
+        <video class="waves-video" src="/videos/waves.mp4" playsinline="" muted="" loop=""></video>
+    </div>
+
+</section>
+                    <section class="section news" data-section-id="news" data-smooth-item="">
+
+    <div class="container">
+        <div class="grid u-justify-content-center">
+
+            <div class="cell-24 title-container">
+                <h2 class="title">
+                    <span class="title__we-are">
+                        <span class="title__we-are__inner">We Are</span>
+                    </span>
+                    <span class="title__text">
+                        <span class="title__text__inner">
+                            Newsworthy
+                            <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                        </span>
+                    </span>
+                </h2>
+            </div>
+
+            <div class="cell-18 news-listing-container">
+                <div class="news-listing">
+                    <a class="news-listing__image-container" href="./news.html">
+                        <div class="news-listing__details">
+                            <div class="news-listing__date">
+                                <span class="news-listing__date__month">10</span>
+                                <span class="news-listing__date__day">14</span>,
+                                <span class="news-listing__date__year">2019</span>
+                            </div>
+                            <div class="news-listing__excerpt">
+                                Etiam porta sem malesuada magna mollis euismod.
+                            </div>
+                            <div class="news-listing__read-more">
+                                Read More
+                            </div>
+                        </div>
+                        <img class="news-listing__image" src="/images/news-one.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="news-listing">
+                    <a class="news-listing__image-container" href="./news.html">
+                        <div class="news-listing__details">
+                            <div class="news-listing__date">
+                                <span class="news-listing__date__month">10</span>
+                                <span class="news-listing__date__day">14</span>,
+                                <span class="news-listing__date__year">2019</span>
+                            </div>
+                            <div class="news-listing__excerpt">
+                                Etiam porta sem malesuada magna mollis euismod.
+                            </div>
+                            <div class="news-listing__read-more">
+                                Read More
+                            </div>
+                        </div>
+                        <img class="news-listing__image" src="/images/news-two.jpg" alt="">
+                    </a>
+                </div>
+
+                <div class="news-listing">
+                    <a class="news-listing__image-container" href="./news.html">
+                        <div class="news-listing__details">
+                            <div class="news-listing__date">
+                                <span class="news-listing__date__month">10</span>
+                                <span class="news-listing__date__day">14</span>,
+                                <span class="news-listing__date__year">2019</span>
+                            </div>
+                            <div class="news-listing__excerpt">
+                                Etiam porta sem malesuada magna mollis euismod.
+                            </div>
+                            <div class="news-listing__read-more">
+                                Read More
+                            </div>
+                        </div>
+                        <img class="news-listing__image" src="/images/news-three.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+                    <section class="section careers" data-section-id="careers" data-smooth-item="">
+
+    <div class="full-screen-video" data-gl-id="careers" data-gl-component="Careers">
+        <video class="careers-video" src="/videos/glitch.mp4" playsinline="" muted="" loop=""></video>
+        <img class="careers-image" src="/images/glitch-texture.jpg">
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div class="cell-24 title-container">
+                <h2 class="title title--inline">
+                    <span class="title__we-are">
+                        <span class="title__we-are__inner">We Are</span>
+                    </span>
+                    <span class="title__text">
+                        <span class="title__text__inner">
+                            Hiring
+                            <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                        </span>
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+                    
+                    <section class="section newsletter" data-section-id="newsletter" data-smooth-item="">
+
+</section>
+                </div>
+
+            </main>
+
+        </div>
+
+
+        <script src="../scripts/manifest.js"></script>
+        <script src="../scripts/vendor.js"></script>
+        <script src="../scripts/theme.js"></script>
+      
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>
