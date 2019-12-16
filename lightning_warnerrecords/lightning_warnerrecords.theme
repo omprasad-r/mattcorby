@@ -1,0 +1,11 @@
+<?php
+
+function lightning_warnerrecords_theme_suggestions_html_alter(&$suggestions, $variables) {
+    // Check it's a node page.
+    if (($node = \Drupal::routeMatch()->getParameter('node')) && $node instanceof \Drupal\node\NodeInterface) {
+        // Insert as second to last so the more specific template by ID still works.
+        array_splice($suggestions, count($suggestions) - 1, 0, 'html__node__' . $node->getType());
+    }
+}
+
+?>
