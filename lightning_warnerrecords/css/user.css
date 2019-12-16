@@ -1,0 +1,80 @@
+a {
+    color: green;
+    text-decoration: none;
+    font-family:  sans-serif;
+}
+
+div#block-wmg-breadcrumbs {
+    display: inline-block;
+}
+
+div#block-wmg-branding {
+    display: inline-block;
+}
+
+nav#block-wmg-account-menu {
+    display: inline-block;
+}
+
+div#block-wmg-powered {
+    display: inline-block;
+}
+#block-wmg-local-tasks li{
+  display: inline-block;
+  padding: 5px 10px;
+}
+#block-wmg-local-tasks{
+  text-align: center;
+}
+
+form#user-login-form {
+    width: 30%;
+    /* margin: 0px auto; */
+    display: inline-block;
+    /* text-align: center; */
+}
+
+label.js-form-required.form-required {
+    text-transform: uppercase;
+    font-family: sans-serif;
+    text-align: center;
+    /* padding: 24px 0px; */
+}
+
+input{
+    /* font-size: 14px; */
+    padding: 5px;
+    width: 100%;
+}
+.description{
+  color:red;
+  font-family: sans-serif;
+  padding: 5px 0px;
+}
+
+.form-item{
+    padding:10px 0px;
+    text-align: center;
+}
+
+input#edit-submit {
+    width: 35%;
+}
+header{
+    display:none;
+}
+
+div#block-wmg-page-title {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+div#edit-actions {
+    /* width: 20%; */
+    text-align: center;
+}
+
+
+div#block-wmg-content {
+    text-align: center;
+}

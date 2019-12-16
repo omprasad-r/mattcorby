@@ -1,0 +1,41 @@
+global-styling:
+  css:
+    theme:
+      'https://fonts.googleapis.com/css?family=Lato':
+        type: external
+        minified: true
+        attributes:
+            rel: preload
+            as: style
+#    base:
+#      css/user.css: {}
+global-scripts:
+  header: true
+  js:
+    https://cdn.livefyre.com/Livefyre.js:
+        type: external
+        minified: true
+        attributes:
+            async: true
+    https://code.jquery.com/jquery-3.3.1.min.js:
+        type: external
+        minified: true
+        attributes:
+            integrity: sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=
+            crossorigin: anonymous
+    https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js:
+        type: external
+        minified: true
+        attributes:
+            async: true
+    https://libraries.wmgartistservices.com/songkick/widget_min.js:
+        type: external
+        minified: true
+    https://assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js:
+        type: external
+        minified: true
+    https://libraries.wmgartistservices.com/mailing-list.js:
+        type: external
+        minified: true
+        attributes:
+            charset: utf-8
