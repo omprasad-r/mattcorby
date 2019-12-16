@@ -32,12 +32,9 @@
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
-{#    <script type="text/javascript" src="https://cdn.livefyre.com/Livefyre.js" ></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" ></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script type="text/javascript" src="https://libraries.wmgartistservices.com/songkick/widget_min.js" ></script>
-    <script type="text/javascript" src="https://assets.adobedtm.com/31543e7db99435a92d6f4a2cf97c808672ed7dd0/satelliteLib-b6e3529c31d92a9252c30c1714b6b9342304145b.js" ></script>
-    <script type="text/javascript" src="https://libraries.wmgartistservices.com/mailing-list.js" charset="utf-8"></script>#}
+        
+        <link rel="stylesheet" href="/{{ base_path ~ directory }}/css/style.css">
+
   </head>
   <body{{ attributes }}>
  <div data-smooth="">
@@ -117,18 +114,18 @@
                         <span class="title__text__inner">
                             <span class="artists__title">
                                 Warner Records
-                                <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                                <svg class="title__text__period"><use xlink:href="/{{ base_path ~ directory }}/images/svgsprite.svg#wr-sun"></use></svg>
                             </span>
                             <span class="artists__selected-artist artists__selected-artist--a" aria-hidden="true">
                                 <span class="artists__selected-artist__inner">
                                     <span class="artists__selected-artist__inner__name">Red Hot Chilli Peppers</span>
-                                    <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                                    <svg class="title__text__period"><use xlink:href="/{{ base_path ~ directory }}/images/svgsprite.svg#wr-sun"></use></svg>
                                 </span>
                             </span>
                             <span class="artists__selected-artist artists__selected-artist--b" aria-hidden="true">
                                 <span class="artists__selected-artist__inner">
                                     <span class="artists__selected-artist__inner__name">Red Hot Chilli Peppers</span>
-                                    <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                                    <svg class="title__text__period"><use xlink:href="/{{ base_path ~ directory }}/images/svgsprite.svg#wr-sun"></use></svg>
                                 </span>
                             </span>
                         </span>
@@ -402,7 +399,7 @@
                     <span class="title__text">
                         <span class="title__text__inner">
                             Newsworthy
-                            <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                            <svg class="title__text__period"><use xlink:href="/{{ base_path ~ directory }}/images/svgsprite.svg#wr-sun"></use></svg>
                         </span>
                     </span>
                 </h2>
@@ -424,7 +421,7 @@
                                 Read More
                             </div>
                         </div>
-                        <img class="news-listing__image" src="/images/news-one.jpg" alt="">
+                        <img class="news-listing__image" src="/{{ base_path ~ directory }}/images/news-one.jpg" alt="">
                     </a>
                 </div>
 
@@ -443,7 +440,7 @@
                                 Read More
                             </div>
                         </div>
-                        <img class="news-listing__image" src="/images/news-two.jpg" alt="">
+                        <img class="news-listing__image" src="/{{ base_path ~ directory }}/images/news-two.jpg" alt="">
                     </a>
                 </div>
 
@@ -462,7 +459,7 @@
                                 Read More
                             </div>
                         </div>
-                        <img class="news-listing__image" src="/images/news-three.jpg" alt="">
+                        <img class="news-listing__image" src="/{{ base_path ~ directory }}/images/news-three.jpg" alt="">
                     </a>
                 </div>
             </div>
@@ -475,7 +472,7 @@
 
     <div class="full-screen-video" data-gl-id="careers" data-gl-component="Careers">
         <video class="careers-video" src="/videos/glitch.mp4" playsinline="" muted="" loop=""></video>
-        <img class="careers-image" src="/images/glitch-texture.jpg">
+        <img class="careers-image" src="/{{ base_path ~ directory }}/images/glitch-texture.jpg">
     </div>
 
     <div class="container">
@@ -488,7 +485,7 @@
                     <span class="title__text">
                         <span class="title__text__inner">
                             Hiring
-                            <svg class="title__text__period"><use xlink:href="/images/svgsprite.svg#wr-sun"></use></svg>
+                            <svg class="title__text__period"><use xlink:href="/{{ base_path ~ directory }}/images/svgsprite.svg#wr-sun"></use></svg>
                         </span>
                     </span>
                 </h2>
@@ -509,9 +506,9 @@
         </div>
 
 
-        <script src="../scripts/manifest.js"></script>
-        <script src="../scripts/vendor.js"></script>
-        <script src="../scripts/theme.js"></script>
+        <script src="/{{ base_path ~ directory }}/scripts/manifest.js"></script>
+        <script src="/{{ base_path ~ directory }}/scripts/vendor.js"></script>
+        <script src="/{{ base_path ~ directory }}/scripts/theme.js"></script>
       
     <js-bottom-placeholder token="{{ placeholder_token }}">
   </body>
