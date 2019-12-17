@@ -8,4 +8,12 @@ function lightning_warnerrecords_theme_suggestions_html_alter(&$suggestions, $va
     }
 }
 
+/**
+ * Implements hook_preprocess_page() for html.html.twig.
+ */
+function lightning_warnerrecords_preprocess_html(array &$variables) {
+$variables['featured_news'] = views_embed_view('news', 'block_1');
+}
+
+
 ?>
