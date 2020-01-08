@@ -1,9 +1,9 @@
-name: Sandbox
+name: Baka Not Nice
 type: theme
 base theme: classy
 description: 'Baka Not Nice, This is the Angular Based theme in Drupal Lightning.'
 package: Custom
-version: '2.7.1'
+version: '2.7.2'
 core: 8.x
 project: 'drupal'
 libraries:
