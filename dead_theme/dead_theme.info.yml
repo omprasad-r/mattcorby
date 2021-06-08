@@ -1,13 +1,12 @@
 name: dead_theme
 type: theme
-base theme: classy
-description: 'Theme for Greatful dead without Angular'
+description: "Theme for Greatful dead without Angular"
 package: Custom
-version: '1.0.7.8'
+version: "1.0.7.8"
 core: 8.x
 core_version_requirement: ^8 || ^9
 base theme: stable
 regions:
-  header: 'Header'    
-  content: 'Content'
-  footer: 'Footer'
+  header: "Header"
+  content: "Content"
+  footer: "Footer"
